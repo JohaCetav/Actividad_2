@@ -1,0 +1,51 @@
+---
+title: "Actividad_2"
+author: "Johanna Salazar Ramírez"
+date: "2023-06-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(datasets)
+```
+
+A continuación se desarrollarán los objetivos de la actividad semanal 2.
+
+```{r}
+autos <- datasets::mtcars
+```
+
+```{r}
+View(autos)
+```
+
+
+5, Filtre el objeto autos para obtener solo los automóviles que tienen más de 100 caballos de fuerza (hp).
+
+```{r}
+autos_filtrados_hp <- autos |> filter(hp > 100)
+```
+
+6. Ordene dichos automóviles de forma descendente según la potencia (hp).
+
+```{r}
+autos_filtrados_hp |> arrange(desc(hp))
+```
+
+7. Seleccione únicamente las columnas mpg, hp y wt.
+
+```{r}
+autos_filtrados_columnas <- autos_filtrados_hp |> select(mpg, hp, wt)
+```
+
+8. Calcule el promedio de las millas por galón (mpg), la potencia (hp) y el peso (wt) para este conjunto de datos.
+
+```{r}
+promedios <- autos_filtrados_columnas |>
+  summarize(promedio_mpg = mean(mpg),
+            promedio_hp = mean(hp),
+            promedio_wt = mean(wt))
+```
+
